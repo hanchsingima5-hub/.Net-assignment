@@ -1,0 +1,39 @@
+@model WebApplication1.Models.Student
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+	<h4>Student</h4>
+	<hr />
+	<dl class="row">
+		<dt class = "col-sm-2">Student ID</dt>
+		<dd class = "col-sm-10">@Model.StudentId</dd>
+
+		<dt class = "col-sm-2">Full Name</dt>
+		<dd class = "col-sm-10">@Model.FullName</dd>
+
+		<dt class = "col-sm-2">Email</dt>
+		<dd class = "col-sm-10">@Model.Email</dd>
+
+		<dt class = "col-sm-2">Course</dt>
+		<dd class = "col-sm-10">@Model.Course</dd>
+
+		<dt class = "col-sm-2">Semester</dt>
+		<dd class = "col-sm-10">@Model.Semester</dd>
+	</dl>
+</div>
+
+@{
+	var isAdmin = User?.IsInRole("Admin") ?? false;
+}
+<p>
+	@if (isAdmin)
+	{
+		<a class="btn btn-secondary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+	}
+	<a class="btn btn-link" asp-action="Index">Back to List</a>
+</p>

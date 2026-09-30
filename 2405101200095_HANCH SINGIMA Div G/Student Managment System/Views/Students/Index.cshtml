@@ -1,0 +1,58 @@
+@model IEnumerable<WebApplication1.Models.Student>
+
+@{
+	ViewData["Title"] = "Students";
+}
+
+<h1>Students</h1>
+
+@{
+	var isAdmin = User?.IsInRole("Admin") ?? false;
+}
+@if (TempData["SuccessMessage"] != null)
+{
+	<div class="alert alert-success" role="alert">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+	<div class="alert alert-danger" role="alert">@TempData["ErrorMessage"]</div>
+}
+
+<p>
+	@if (isAdmin)
+	{
+		<a class="btn btn-primary" asp-action="Create">Create New</a>
+	}
+</p>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Student ID</th>
+			<th>Full Name</th>
+			<th>Email</th>
+			<th>Course</th>
+			<th>Semester</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.StudentId</td>
+			<td>@item.FullName</td>
+			<td>@item.Email</td>
+			<td>@item.Course</td>
+			<td>@item.Semester</td>
+		<td>
+			<a asp-action="Details" asp-route-id="@item.Id">Details</a>
+			@if (isAdmin)
+			{
+				@:<span> | <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | <a asp-action="Delete" asp-route-id="@item.Id">Delete</a></span>
+			}
+		</td>
+		</tr>
+	}
+	</tbody>
+</table>

@@ -1,0 +1,30 @@
+@{
+	ViewData["Title"] = "Admin Dashboard";
+}
+
+@{
+	/* Inline styles minimal to match site */
+}
+<text>
+<style>
+  .admin-hero { padding: 36px 12px; }
+  .admin-card { max-width: 880px; margin: 0 auto; background:#fff; border-radius:8px; padding:20px; box-shadow:0 1px 6px rgba(0,0,0,0.04); }
+  .admin-actions .btn { margin-right:8px; }
+</style>
+</text>
+
+<div class="admin-hero">
+	<div class="admin-card">
+		<h2>Student Management System</h2>
+		<h4>Admin Dashboard</h4>
+
+		<div class="admin-actions mt-3">
+			<a class="btn btn-primary" href="/Students">Manage Students</a>
+			<a class="btn btn-secondary" href="/Admin/Users">Manage Users</a>
+			<a class="btn btn-outline-secondary" href="/Identity/Account/Manage">Account</a>
+			<form asp-area="Identity" asp-page="/Account/Logout" method="post" style="display:inline">
+				<button type="submit" class="btn btn-link">Logout</button>
+			</form>
+		</div>
+	</div>
+</div>
